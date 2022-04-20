@@ -1176,6 +1176,11 @@ prev_word()	/* move to start of previous word in text	*/
 		left(TRUE);
 }
 
+
+// Changes required for running on NetBSD
+// Keyboard shortcuts fix: swapped conditions to correspond with the NetBSD console
+// (Original FreeBSD 13 blocks are commented out)
+
 void 
 control()			/* use control for commands		*/
 {
@@ -1210,20 +1215,16 @@ control()			/* use control for commands		*/
 		// search_prompt();
 		eol();
 	else if (in == 6)	/* control f	*/
-                // zo gelaten, weet niet hoe dit zou moeten werken
 		undel_char();
 	else if (in == 7)	/* control g	*/
 		//bol();
                 top();
 	else if (in == 8)	/* control h	*/
-                // allebei backspace? Zo gelaten
 		delete(TRUE);
 	else if (in == 9)	/* control i	*/
-                // allebei tab? Zo gelaten
 		;
 	else if (in == 10)	/* control j	*/
 		insert_line(TRUE);
-                // ^@ in FreeBSD. weet niet waar dit voor is
 	else if (in == 11)	/* control k	*/
 		// del_char();
                 del_line();
@@ -1231,10 +1232,8 @@ control()			/* use control for commands		*/
 		// left(TRUE);
 		undel_line();
 	else if (in == 13)	/* control m	*/
-                // zo gelaten
 		insert_line(TRUE);
 	else if (in == 14)	/* control n	*/
-                // zo gelaten
 		move_rel('d', max(5, (last_line - 5)));
 	else if (in == 15)	/* control o	*/
 		// eol();
@@ -1254,13 +1253,12 @@ control()			/* use control for commands		*/
 	else if (in == 17)	/* control q	*/
 		;
 	else if (in == 18)	/* control r	*/
-                // in FreeBSD geen functie...
+                // in FreeBSD no function...
 		// right(TRUE);
                 ;
 	else if (in == 19)	/* control s	*/
 		;
 	else if (in == 20)	/* control t	*/
-                // beide hetzelfde
 		top();
 	else if (in == 21)	/* control u	*/
 		// up();
@@ -1271,9 +1269,7 @@ control()			/* use control for commands		*/
                 bottom();
 	else if (in == 23)	/* control w	*/
 		del_word();
-                // beide hetzelfde
 	else if (in == 24)	/* control x	*/
-                // beide hetzelfde, betekenis onbekend
 		search(TRUE);
 	else if (in == 25)	/* control y	*/
 		// del_line();
